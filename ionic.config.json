@@ -1,0 +1,7 @@
+{
+  "name": "apps-mov",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
