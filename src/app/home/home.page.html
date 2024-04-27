@@ -1,20 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<div class="product-grid">
+  <div class="product-card" *ngFor="let product of products">
+    <ion-card (click)="viewProductDetails(product.id)"> <!-- Cambio aquí -->
+      <div class="image-container">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image">
+      </div>
+      <ion-card-header>
+        <ion-card-title>{{ product.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">Precio: ${{ product.price }}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
-</ion-content>
+</div>

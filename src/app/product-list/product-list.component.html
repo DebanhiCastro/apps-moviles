@@ -1,0 +1,12 @@
+<ion-list>
+  <ion-item *ngFor="let product of products" (click)="viewDetails(product)">
+    <ion-thumbnail slot="start">
+      <img [src]="product.image">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description }}</p>
+      <p>Precio: ${{ product.price }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>

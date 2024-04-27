@@ -1,0 +1,36 @@
+/* product-details.page.scss */
+
+ion-header ion-toolbar {
+    --ion-color-primary: #3880ff; /* Color primario de tu aplicación */
+  }
+  
+  .product-details {
+    padding: 20px;
+  }
+  
+  .product-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Color del texto del nombre */
+  }
+  
+  .product-description {
+    margin-top: 10px;
+    color: #666; /* Color del texto de la descripción */
+  }
+  
+  .product-price {
+    font-weight: bold;
+    margin-top: auto; /* Para que se mantenga al final */
+    color: #3880ff; /* Color del precio */
+  }
+  
+  ion-button {
+    margin-top: 20px;
+    --background: #3880ff; /* Color de fondo del botón */
+    --color: #fff; /* Color del texto del botón */
+    --border-radius: 3px; /* Bordes redondeados */
+    --padding-end: 20px; /* Espacio adicional a la derecha */
+    --padding-start: 20px; /* Espacio adicional a la izquierda */
+  }
+  
