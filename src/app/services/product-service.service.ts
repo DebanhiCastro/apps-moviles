@@ -15,7 +15,7 @@ export class ProductServiceService {
     const firebaseApp = initializeApp(environment.firebaseConfig);
     this.db = getFirestore(firebaseApp);
   }
-
+//obtine los productos de la base de datos
   async getProducts(): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await getDocs(collection(this.db, 'productos')); // Cambio aquí a 'productos'
