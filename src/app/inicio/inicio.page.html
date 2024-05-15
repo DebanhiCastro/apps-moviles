@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Bienvenido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="container">
+    <div class="welcome-message">
+      <h1 class="ion-text-center">¡Bienvenido a nuestra página!</h1>
+      <p class="ion-text-center">Descubre todo lo que tenemos para ti.</p>
+    </div>
+    <div class="animated-button">
+      <ion-button color="secondary" (click)="goToLogin()" expand="block">
+        <ion-icon slot="start" name="log-in"></ion-icon>
+        Iniciar sesión
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

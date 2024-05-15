@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { Router } from '@angular/router';
 import { ProductServiceService } from '../services/product-service.service';
+import { AuthService } from '../services/auth.service'; // Importa el servicio de autenticación
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private router: Router,
-    private productService: ProductServiceService
+    private productService: ProductServiceService,
+    private authService: AuthService // Inyecta el servicio de autenticación
   ) {}
 
   ngOnInit() {
@@ -38,7 +40,10 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    // Aquí deberías agregar la lógica de logout si es necesario
+    // Llama al método de logout en el servicio de autenticación
+    this.authService.logout();
+    // Redirige al usuario a la página de login después del logout
+    this.router.navigate(['/login']);
   }
 
   navigateTo(path: string) {

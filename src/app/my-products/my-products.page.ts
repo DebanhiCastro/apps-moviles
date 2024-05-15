@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { ProductServiceService } from '../services/product-service.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-products',
@@ -22,7 +23,8 @@ export class MyProductsPage implements OnInit {
 
   constructor(
     private productService: ProductServiceService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router // Necesitamos el Router para redireccionar a otras páginas
   ) {}
 
   ngOnInit() {
@@ -65,5 +67,23 @@ export class MyProductsPage implements OnInit {
   // Método para mostrar u ocultar el formulario
   toggleForm() {
     this.showForm = !this.showForm;
+  }
+
+  // Método para editar un producto
+  editProduct(product: Product) {
+    // Redireccionamos a la página de edición pasando el ID del producto como parámetro
+    this.router.navigate(['/edit-product', product.id]);
+  }
+
+  // Método para eliminar un producto
+  async deleteProduct(productId: string) {
+    try {
+      // Eliminamos el producto
+      await this.productService.deleteProduct(productId);
+      // Actualizamos la lista de productos
+      this.getProductsFromFirebase();
+    } catch (error) {
+      console.error('Error al eliminar producto:', error);
+    }
   }
 }

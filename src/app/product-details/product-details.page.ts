@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product';
 import { AlertController } from '@ionic/angular';
 import { ProductServiceService } from '../services/product-service.service';
@@ -22,6 +22,7 @@ export class ProductDetailsPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private alertController: AlertController,
     private productService: ProductServiceService
   ) {}
@@ -49,4 +50,36 @@ export class ProductDetailsPage implements OnInit {
 
     await alert.present();
   }
+
+ /* editProduct() {
+    console.log("editar")
+    this.router.navigate(['/edit-product', this.productId]);
+  }
+/*
+  async deleteProduct() {
+    const alert = await this.alertController.create({
+      header: 'Eliminar Producto',
+      message: '¿Estás seguro de que deseas eliminar este producto?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            // Lógica para eliminar el producto
+            this.productService.deleteProduct(this.productId).then(() => {
+              this.router.navigate(['/home']); // Redirigir a la página principal después de eliminar
+            }).catch(error => {
+              console.error("Error al eliminar el producto:", error);
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  */
 }

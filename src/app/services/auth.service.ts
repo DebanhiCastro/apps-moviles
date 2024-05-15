@@ -7,11 +7,15 @@ export class AuthService {
   private isAuthenticated: boolean = false;
   private userIdKey: string = 'userId'; // Clave para el Local Storage
 
-  constructor() { }
+  constructor() {
+    // Al inicializar el servicio, verificamos si el usuario está autenticado
+    // obteniendo su estado del Local Storage
+    this.isAuthenticated = this.checkAuthState();
+  }
 
   login(username: string, password: string): boolean {
     // Aquí puedes implementar la lógica de autenticación con tu backend o servicio
-    if (username === 'usuario1' && password === 'contraseña1') {
+    if (username === 'us1' && password === 'con1') {
       this.isAuthenticated = true;
       this.saveUserId('1'); // Guardamos el ID de usuario
       return true;
@@ -44,5 +48,11 @@ export class AuthService {
 
   private removeUserId(): void {
     localStorage.removeItem(this.userIdKey); // Eliminamos el ID de usuario del Local Storage
+  }
+
+  private checkAuthState(): boolean {
+    // Comprobamos si el usuario está autenticado obteniendo su estado del Local Storage
+    const userId = localStorage.getItem(this.userIdKey);
+    return !!userId; // Si userId existe, el usuario está autenticado; de lo contrario, no lo está
   }
 }

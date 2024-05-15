@@ -29,7 +29,17 @@ const routes: Routes = [
   },
   {
     path: 'my-products',
-    loadChildren: () => import('./my-products/my-products.module').then( m => m.MyProductsPageModule)
+    loadChildren: () => import('./my-products/my-products.module').then( m => m.MyProductsPageModule),
+    canActivate: [AuthGuard] // Protege la ruta 'product-details' con el guardia de autenticación
+  },
+  {
+    path: 'edit-product/:id',
+    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule),
+    canActivate: [AuthGuard] // Protege la ruta 'product-details' con el guardia de autenticación
+  },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
   },
 ];
 

@@ -1,0 +1,44 @@
+ion-header {
+    ion-toolbar {
+      --background: linear-gradient(to bottom, #6B65E3, #4BB5FF);
+    }
+  }
+  
+  .container {
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .welcome-message {
+    animation: fadeIn 1s ease forwards;
+  }
+  
+  .animated-button {
+    animation: slideInUp 1s ease forwards;
+  }
+  
+  ion-button {
+    --background: #4BB5FF;
+    --border-radius: 25px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
