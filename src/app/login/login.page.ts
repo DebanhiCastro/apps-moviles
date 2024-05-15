@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage  {
+export class LoginPage {
 
   username: string = '';
   password: string = '';
 
+  constructor(private authService: AuthService, private router: Router) {}
+
   login() {
-    if (this.username === 'usuario' && this.password === 'contraseña') {
+    if (this.authService.login(this.username, this.password)) {
       alert('¡Inicio de sesión exitoso!');
+      this.router.navigate(['/home']);
     } else {
       alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
     }
   }
-
 }

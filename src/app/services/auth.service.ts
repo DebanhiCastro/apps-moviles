@@ -4,37 +4,30 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  private isAuthenticated: boolean = false;
 
-  constructor() { }
+  constructor() {
+    this.isAuthenticated = !!localStorage.getItem('isAuthenticated');
+  }
 
-  // Función para iniciar sesión
   login(username: string, password: string): boolean {
-    // Comprobamos si las credenciales son correctas
-    if (username === 'usuario' && password === '1234') {
-      // Guardamos el token en el almacenamiento local
-      localStorage.setItem('currentUser', JSON.stringify({ username, token: 'fake-token' }));
-      return true; // Login exitoso
+    if (username === 'usuario' && password === 'contraseña') {
+      this.isAuthenticated = true;
+      localStorage.setItem('isAuthenticated', 'true');
+      return true;
     } else {
-      return false; // Credenciales incorrectas
+      this.isAuthenticated = false;
+      localStorage.removeItem('isAuthenticated');
+      return false;
     }
   }
 
-  // Función para cerrar sesión
+  isLoggedIn(): boolean {
+    return this.isAuthenticated;
+  }
+
   logout(): void {
-    // Eliminamos el token del almacenamiento local
-    localStorage.removeItem('currentUser');
-  }
-
-  // Función para obtener el usuario actual
-  getCurrentUser(): any {
-    // Obtenemos el usuario del almacenamiento local
-    const currentUser = localStorage.getItem('currentUser');
-    return currentUser ? JSON.parse(currentUser) : null;
-  }
-
-  // Función para comprobar si el usuario está autenticado
-  isAuthenticated(): boolean {
-    // Comprobamos si existe el token en el almacenamiento local
-    return !!localStorage.getItem('currentUser');
+    this.isAuthenticated = false;
+    localStorage.removeItem('isAuthenticated');
   }
 }
