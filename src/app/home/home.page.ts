@@ -9,29 +9,39 @@ import { ProductServiceService } from '../services/product-service.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  products: Product[] = [];
-  constructor(private router: Router,private productService: ProductServiceService) {}
+  allProducts: Product[] = [];
+
+  constructor(
+    private router: Router,
+    private productService: ProductServiceService
+  ) {}
+
   ngOnInit() {
     // Llama al método para obtener todos los productos
-    this.getProductsFromFirebase();
+    this.getAllProducts();
   }
+
   viewProductDetails(productId: string) {
     this.router.navigate(['/product-details', productId]);
   }
-    // Método para obtener los productos de Firebase y mostrarlos en consola
-    async getProductsFromFirebase() {
-      try {
-        // Llama al servicio para obtener los productos
-        const products = await this.productService.getProducts();
-  
-        // Muestra los productos en consola
-        console.log('Productos obtenidos de Firebase:', products);
-  
-        // Asigna los productos obtenidos a la variable local para mostrarlos en la vista
-        this.products = products;
-      } catch (error) {
-        console.error('Error al obtener productos de Firebase:', error);
-      }
+
+  async getAllProducts() {
+    try {
+      // Llama al servicio para obtener todos los productos
+      const products = await this.productService.getAllProducts();
+
+      // Asigna los productos obtenidos a la variable local para mostrarlos en la vista
+      this.allProducts = products;
+    } catch (error) {
+      console.error('Error al obtener productos:', error);
     }
-  
+  }
+
+  logout() {
+    // Aquí deberías agregar la lógica de logout si es necesario
+  }
+
+  navigateTo(path: string) {
+    this.router.navigate([`/${path}`]);
+  }
 }

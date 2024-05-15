@@ -5,19 +5,22 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private isAuthenticated: boolean = false;
+  private userIdKey: string = 'userId'; // Clave para el Local Storage
 
-  constructor() {
-    this.isAuthenticated = !!localStorage.getItem('isAuthenticated');
-  }
+  constructor() { }
 
   login(username: string, password: string): boolean {
-    if (username === 'usuario' && password === 'contraseña') {
+    // Aquí puedes implementar la lógica de autenticación con tu backend o servicio
+    if (username === 'usuario1' && password === 'contraseña1') {
       this.isAuthenticated = true;
-      localStorage.setItem('isAuthenticated', 'true');
+      this.saveUserId('1'); // Guardamos el ID de usuario
+      return true;
+    } else if (username === 'usuario2' && password === 'contraseña2') {
+      this.isAuthenticated = true;
+      this.saveUserId('2'); // Guardamos el ID de usuario
       return true;
     } else {
       this.isAuthenticated = false;
-      localStorage.removeItem('isAuthenticated');
       return false;
     }
   }
@@ -28,6 +31,18 @@ export class AuthService {
 
   logout(): void {
     this.isAuthenticated = false;
-    localStorage.removeItem('isAuthenticated');
+    this.removeUserId(); // Eliminamos el ID de usuario al cerrar sesión
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey); // Obtenemos el ID de usuario del Local Storage
+  }
+
+  private saveUserId(userId: string): void {
+    localStorage.setItem(this.userIdKey, userId); // Guardamos el ID de usuario en el Local Storage
+  }
+
+  private removeUserId(): void {
+    localStorage.removeItem(this.userIdKey); // Eliminamos el ID de usuario del Local Storage
   }
 }

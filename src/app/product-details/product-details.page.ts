@@ -13,6 +13,7 @@ export class ProductDetailsPage implements OnInit {
   productId: string = '0';
   product: Product = {
     id: '0',
+    idUsuario: '',
     name: '',
     description: '',
     price: 0,
