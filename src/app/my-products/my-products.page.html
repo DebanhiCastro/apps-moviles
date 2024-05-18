@@ -3,10 +3,10 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button> <!-- Botón de retroceso -->
     </ion-buttons>
-    <ion-title>Mis Productos</ion-title>
+    <ion-title>Mis Productos</ion-title> <!-- Título de la página -->
     <ion-buttons slot="end">
       <ion-button (click)="toggleForm()">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
+        <ion-icon slot="icon-only" name="add"></ion-icon> <!-- Botón para mostrar/ocultar el formulario -->
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -16,37 +16,37 @@
   <!-- Formulario para agregar un nuevo producto (oculto por defecto) -->
   <ion-fab vertical="center" horizontal="center" slot="fixed" *ngIf="showForm" class="form-fab">
     <ion-fab-button (click)="toggleForm()">
-      <ion-icon name="close"></ion-icon>
+      <ion-icon name="close"></ion-icon> <!-- Botón para cerrar el formulario -->
     </ion-fab-button>
   </ion-fab>
 
   <ion-card *ngIf="showForm" class="form-card">
     <ion-card-header>
-      <ion-card-title>Crear Nuevo Producto</ion-card-title>
+      <ion-card-title>Crear Nuevo Producto</ion-card-title> <!-- Título del formulario -->
     </ion-card-header>
 
     <ion-card-content>
       <ion-item lines="full">
-        <ion-label position="floating">Nombre</ion-label>
+        <ion-label position="floating">Nombre</ion-label> <!-- Campo de entrada para el nombre del producto -->
         <ion-input type="text" [(ngModel)]="newProduct.name" required></ion-input>
       </ion-item>
 
       <ion-item lines="full">
-        <ion-label position="floating">Descripción</ion-label>
+        <ion-label position="floating">Descripción</ion-label> <!-- Campo de entrada para la descripción del producto -->
         <ion-textarea [(ngModel)]="newProduct.description" required></ion-textarea>
       </ion-item>
 
       <ion-item lines="full">
-        <ion-label position="floating">Precio</ion-label>
+        <ion-label position="floating">Precio</ion-label> <!-- Campo de entrada para el precio del producto -->
         <ion-input type="number" [(ngModel)]="newProduct.price" required></ion-input>
       </ion-item>
 
       <ion-item lines="full">
-        <ion-label position="floating">URL de imagen</ion-label>
+        <ion-label position="floating">URL de imagen</ion-label> <!-- Campo de entrada para la URL de la imagen del producto -->
         <ion-input type="text" [(ngModel)]="newProduct.image" required></ion-input>
       </ion-item>
 
-      <ion-button expand="block" (click)="addProduct()">Agregar Producto</ion-button>
+      <ion-button expand="block" (click)="addProduct()">Agregar Producto</ion-button> <!-- Botón para agregar el producto -->
     </ion-card-content>
   </ion-card>
 
@@ -55,20 +55,20 @@
     <ion-row>
       <ion-col size="12" size-md="6" size-lg="4" *ngFor="let product of products">
         <ion-card class="product-card">
-          <img [src]="product.image" alt="{{ product.name }}">
+          <img [src]="product.image" alt="{{ product.name }}"> <!-- Imagen del producto -->
           <ion-card-header>
-            <ion-card-title>{{ product.name }}</ion-card-title>
+            <ion-card-title>{{ product.name }}</ion-card-title> <!-- Nombre del producto -->
           </ion-card-header>
           <ion-card-content>
-            <p>{{ product.description }}</p>
-            <p class="price">Precio: ${{ product.price }}</p>
+            <p>{{ product.description }}</p> <!-- Descripción del producto -->
+            <p class="price">Precio: ${{ product.price }}</p> <!-- Precio del producto -->
             <!-- Botones de edición y eliminación -->
             <ion-row>
               <ion-col size="6">
-                <ion-button expand="block" (click)="editProduct(product)">Editar</ion-button>
+                <ion-button expand="block" (click)="editProduct(product)">Editar</ion-button> <!-- Botón para editar el producto -->
               </ion-col>
               <ion-col size="6">
-                <ion-button expand="block" (click)="deleteProduct(product.id)">Eliminar</ion-button>
+                <ion-button expand="block" (click)="deleteProduct(product.id)">Eliminar</ion-button> <!-- Botón para eliminar el producto -->
               </ion-col>
             </ion-row>
           </ion-card-content>
