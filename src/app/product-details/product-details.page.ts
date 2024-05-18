@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../models/product';
-import { AlertController } from '@ionic/angular';
-import { ProductServiceService } from '../services/product-service.service';
+import { Component, OnInit } from '@angular/core';  // Importa Component y OnInit de Angular
+import { ActivatedRoute, Router } from '@angular/router';  // Importa ActivatedRoute y Router para manejar la navegación y rutas
+import { Product } from '../models/product';  // Importa la interfaz Product que define la estructura de un producto
+import { AlertController } from '@ionic/angular';  // Importa AlertController de Ionic para mostrar alertas
+import { ProductServiceService } from '../services/product-service.service';  // Importa el servicio de productos
 
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.page.html',
-  styleUrls: ['./product-details.page.scss'],
+  selector: 'app-product-details',  // Define el selector para este componente
+  templateUrl: './product-details.page.html',  // Ruta al archivo de plantilla HTML
+  styleUrls: ['./product-details.page.scss'],  // Ruta al archivo de estilos SCSS
 })
-export class ProductDetailsPage implements OnInit {
-  productId: string = '0';
-  product: Product = {
+export class ProductDetailsPage implements OnInit {  // Define la clase ProductDetailsPage e implementa OnInit
+  productId: string = '0';  // Inicializa la variable productId
+  product: Product = {  // Inicializa la variable product con un producto vacío según la estructura de la interfaz Product
     id: '0',
     idUsuario: '',
     name: '',
@@ -21,65 +21,34 @@ export class ProductDetailsPage implements OnInit {
   };
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private alertController: AlertController,
-    private productService: ProductServiceService
+    private route: ActivatedRoute,  // Inyecta ActivatedRoute para acceder a los parámetros de la ruta
+    private router: Router,  // Inyecta Router para la navegación programática
+    private alertController: AlertController,  // Inyecta AlertController para mostrar alertas
+    private productService: ProductServiceService  // Inyecta ProductServiceService para acceder a los métodos del servicio de productos
   ) {}
 
-  async ngOnInit() {
-    const productIdParam = this.route.snapshot.paramMap.get('id');
+  async ngOnInit() {  // Implementa ngOnInit, que se ejecuta al inicializar el componente
+    const productIdParam = this.route.snapshot.paramMap.get('id');  // Obtiene el parámetro 'id' de la ruta
     if (productIdParam !== null) {
-      this.productId = productIdParam;
-      const product = await this.productService.getProductById(this.productId);
+      this.productId = productIdParam;  // Asigna el parámetro de ruta a la variable productId
+      const product = await this.productService.getProductById(this.productId);  // Llama al servicio para obtener el producto por su ID
       if (product !== null) {
-        this.product = product;
+        this.product = product;  // Asigna el producto obtenido a la variable product
       } else {
-        console.error(`No se encontró ningún producto con el ID ${this.productId}`);
+        console.error(`No se encontró ningún producto con el ID ${this.productId}`);  // Muestra un error si no se encuentra el producto
         // Puedes mostrar un mensaje o redirigir a una página de error aquí si lo deseas
       }
     }
   }
 
-  async addToCart() {
+  async addToCart() {  // Método para agregar el producto al carrito
     const alert = await this.alertController.create({
-      header: 'Carrito de compra',
-      message: 'Producto agregado al carrito.',
-      buttons: ['OK'],
+      header: 'Carrito de compra',  // Título de la alerta
+      message: 'Producto agregado al carrito.',  // Mensaje de la alerta
+      buttons: ['OK'],  // Botón de la alerta
     });
 
-    await alert.present();
+    await alert.present();  // Muestra la alerta
   }
 
- /* editProduct() {
-    console.log("editar")
-    this.router.navigate(['/edit-product', this.productId]);
-  }
-/*
-  async deleteProduct() {
-    const alert = await this.alertController.create({
-      header: 'Eliminar Producto',
-      message: '¿Estás seguro de que deseas eliminar este producto?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
-        {
-          text: 'Eliminar',
-          handler: () => {
-            // Lógica para eliminar el producto
-            this.productService.deleteProduct(this.productId).then(() => {
-              this.router.navigate(['/home']); // Redirigir a la página principal después de eliminar
-            }).catch(error => {
-              console.error("Error al eliminar el producto:", error);
-            });
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-  */
 }
