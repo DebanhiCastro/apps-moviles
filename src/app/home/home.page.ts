@@ -10,23 +10,25 @@ import { AuthService } from '../services/auth.service'; // Importa el servicio d
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  allProducts: Product[] = [];
+  allProducts: Product[] = []; // Array para almacenar todos los productos
 
   constructor(
-    private router: Router,
-    private productService: ProductServiceService,
+    private router: Router, // Inyecta el Router para la navegación
+    private productService: ProductServiceService, // Inyecta el servicio de productos
     private authService: AuthService // Inyecta el servicio de autenticación
   ) {}
 
   ngOnInit() {
-    // Llama al método para obtener todos los productos
+    // Llama al método para obtener todos los productos al inicializar el componente
     this.getAllProducts();
   }
 
+  // Navega a la página de detalles del producto con el ID del producto
   viewProductDetails(productId: string) {
     this.router.navigate(['/product-details', productId]);
   }
 
+  // Método asincrónico para obtener todos los productos
   async getAllProducts() {
     try {
       // Llama al servicio para obtener todos los productos
@@ -39,6 +41,7 @@ export class HomePage implements OnInit {
     }
   }
 
+  // Método para cerrar sesión
   logout() {
     // Llama al método de logout en el servicio de autenticación
     this.authService.logout();
@@ -46,6 +49,7 @@ export class HomePage implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  // Método para navegar a una ruta específica
   navigateTo(path: string) {
     this.router.navigate([`/${path}`]);
   }

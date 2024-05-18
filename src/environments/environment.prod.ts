@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
-  firebaseConfig: {
-    apiKey: "AIzaSyCwmNnQ49yTI3wf8xoOblPnizEnLHwEeWs",
-  authDomain: "ventas-24321.firebaseapp.com",
-  projectId: "ventas-24321",
-  storageBucket: "ventas-24321.appspot.com",
-  messagingSenderId: "475914825740",
-  appId: "1:475914825740:web:7464711b68812efedd7e29",
-  measurementId: "G-L9104ET97L"
+  firebaseConfig : {
+    apiKey: "AIzaSyClL3lO633JTEUhSiVDIQ5WegptofoaxRM",
+    authDomain: "pia-032.firebaseapp.com",
+    databaseURL: "https://pia-032-default-rtdb.firebaseio.com",
+    projectId: "pia-032",
+    storageBucket: "pia-032.appspot.com",
+    messagingSenderId: "918706485648",
+    appId: "1:918706485648:web:81b5e18a528606ee611b15",
+    measurementId: "G-HGDPXY4XE7"
   }
 };
